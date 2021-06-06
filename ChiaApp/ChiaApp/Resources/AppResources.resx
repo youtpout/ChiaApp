@@ -120,6 +120,9 @@
   <data name="Difficulty" xml:space="preserve">
     <value>Difficulty</value>
   </data>
+  <data name="ErrorServerTimeout" xml:space="preserve">
+    <value>The server did not respond, check if you server is launch.</value>
+  </data>
   <data name="EstimatedNetworkSpace" xml:space="preserve">
     <value>Estimated network space</value>
   </data>

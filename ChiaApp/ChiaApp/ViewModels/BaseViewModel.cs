@@ -26,6 +26,41 @@ namespace ChiaApp.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        private bool loading;
+
+        public bool Loading
+        {
+            get { return loading; }
+            set { SetProperty(ref loading, value); }
+        }
+
+        private decimal progress;
+
+        public decimal Progress
+        {
+            get { return progress; }
+            set { SetProperty(ref progress, value); }
+        }
+
+        private string error;
+
+        public string Error
+        {
+            get { return error; }
+            set
+            {
+                SetProperty(ref error, value);
+                ShowError = !string.IsNullOrEmpty(value);
+            }
+        }
+
+        private bool showError;
+        public bool ShowError
+        {
+            get { return showError; }
+            set { SetProperty(ref showError, value); ; }
+        }
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)

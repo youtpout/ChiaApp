@@ -10,6 +10,10 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="10">
+            <StackLayout HeightRequest="10">
+                <ProgressBar ProgressColor="{StaticResource Primary}" Progress="{Binding Progress}" IsVisible="{Binding Loading}" />
+            </StackLayout>
+            <Label Text="{Binding Error}" IsVisible="{Binding ShowError}" TextColor="{StaticResource Danger}"></Label>
             <Frame BindingContext="{Binding FullNodeStatus}"  CornerRadius="10" HasShadow="True"    Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>

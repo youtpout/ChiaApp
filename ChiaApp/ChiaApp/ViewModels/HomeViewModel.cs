@@ -27,9 +27,14 @@ namespace ChiaApp.ViewModels
             set { SetProperty(ref walletInfo, value); }
         }
 
+
+        HttpClient client;
         public HomeViewModel()
         {
-            Title = "Home";
+            Title = "Your Node Info";
+
+            client = new HttpClient();
+            client.Timeout = new TimeSpan(0, 0, 5);
 
             LoadData();
 
@@ -49,19 +54,43 @@ namespace ChiaApp.ViewModels
 
         private async void LoadData()
         {
-            HttpClient client = new HttpClient();
+            Error = string.Empty;
+            try
+            {
+                Loading = true;
+                Progress = 0.1m;
 
-            string url = "http://192.168.1.142:42222/api/Chia/GetFullNodeStatus";
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
+                string url = "http://192.168.1.142:42222/api/Chia/GetFullNodeStatus";
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
 
-            // Deserialize the updated product from the response body.       
-            FullNodeStatus = await response.Content.ReadAsAsync<FullNodeStatus>();
+                // Deserialize the updated product from the response body.       
+                FullNodeStatus = await response.Content.ReadAsAsync<FullNodeStatus>();
+                Progress = 0.5m;
+                url = "http://192.168.1.142:42222/api/Chia/GetWallet";
+                response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                WalletInfo = await response.Content.ReadAsAsync<WalletInfo>();
 
-            url = "http://192.168.1.142:42222/api/Chia/GetWallet";
-            response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            WalletInfo = await response.Content.ReadAsAsync<WalletInfo>();
+                Progress = 1m;
+            }
+            catch (TimeoutException ex)
+            {
+                Error = Resources.AppResources.ErrorServerTimeout;
+            }
+            catch (OperationCanceledException ex)
+            {
+                Error = Resources.AppResources.ErrorServerTimeout;
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            finally
+            {
+                Loading = false;
+            }
+
 
         }
 

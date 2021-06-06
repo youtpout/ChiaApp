@@ -70,6 +70,15 @@ namespace ChiaApp.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The server did not respond, check if you server is launch..
+        /// </summary>
+        internal static string ErrorServerTimeout {
+            get {
+                return ResourceManager.GetString("ErrorServerTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Estimated network space.
         /// </summary>
         internal static string EstimatedNetworkSpace {
