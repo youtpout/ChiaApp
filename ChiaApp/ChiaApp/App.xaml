@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:helpers="clr-namespace:ChiaApp.Helpers"
              x:Class="ChiaApp.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
@@ -8,6 +9,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#3aac59</Color>
+            <Color x:Key="Secondary">#000000</Color>
+            <Color x:Key="Danger">#dc3545</Color>
+            <Color x:Key="Help">#c8c8c8</Color>
+            <Color x:Key="Connected">#3aac59</Color>
+            <Color x:Key="NotConnected">red</Color>
+            <Color x:Key="Syncing">orange</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -27,6 +34,10 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+        </ResourceDictionary>
+        <helpers:ImageSourceConverter x:Key="ImageConverter"></helpers:ImageSourceConverter>
+        <helpers:ProgressConverter x:Key="ProgressConverter"></helpers:ProgressConverter>
+        <helpers:RankColorConverter x:Key="RankColorConverter"></helpers:RankColorConverter>
+        <helpers:InverterConverter x:Key="InverterConverter"></helpers:InverterConverter>
     </Application.Resources>
 </Application>

@@ -32,6 +32,17 @@ namespace ChiaApp.ViewModels
             Title = "Home";
 
             LoadData();
+
+            Device.StartTimer(new TimeSpan(0, 0, 15), () =>
+            {
+                // do something every 15 seconds
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    // interact with UI elements
+                    LoadData();
+                });
+                return true; // runs again, or false to stop
+            });
         }
 
         public ICommand OpenWebCommand { get; }
