@@ -12,29 +12,24 @@ namespace ChiaDto
         {
             get
             {
-                return GetXchFromMojo(this.TotalBalance);
+                return this.TotalBalance.GetXchFromMojo();
             }
         }
         public string PendingBalanceFormat
         {
             get
             {
-                return GetXchFromMojo(this.PendingBalance);
+                return this.PendingBalance.GetXchFromMojo();
             }
         }
         public string SpendableBalanceFormat
         {
             get
             {
-                return GetXchFromMojo(this.SpendableBalance);
+                return this.SpendableBalance.GetXchFromMojo();
             }
         }
 
-        private string GetXchFromMojo(decimal mojo)
-        {
-            decimal result = 0;
-            result = mojo / (decimal)Math.Pow(10, 12);
-            return $"{result} XCH";
-        }
+
     }
 }

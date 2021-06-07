@@ -27,6 +27,13 @@ namespace ChiaApp.ViewModels
             set { SetProperty(ref walletInfo, value); }
         }
 
+        FarmingInfo farmingInfo = new FarmingInfo();
+        public FarmingInfo FarmingInfo
+        {
+            get { return farmingInfo; }
+            set { SetProperty(ref farmingInfo, value); }
+        }
+
 
         HttpClient client;
         public HomeViewModel()
@@ -63,14 +70,19 @@ namespace ChiaApp.ViewModels
                 string url = "http://192.168.1.142:42222/api/Chia/GetFullNodeStatus";
                 HttpResponseMessage response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
-
-                // Deserialize the updated product from the response body.       
                 FullNodeStatus = await response.Content.ReadAsAsync<FullNodeStatus>();
-                Progress = 0.5m;
+                Progress = 0.33m;
+
                 url = "http://192.168.1.142:42222/api/Chia/GetWallet";
                 response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 WalletInfo = await response.Content.ReadAsAsync<WalletInfo>();
+                Progress = 0.66m;
+
+                url = "http://192.168.1.142:42222/api/Chia/GetFarmingInfo";
+                response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                FarmingInfo = await response.Content.ReadAsAsync<FarmingInfo>();
 
                 Progress = 1m;
             }

@@ -16,8 +16,6 @@ namespace ChiaDto
         public int PeakHeight { get; set; }
         public int Difficulty { get; set; }
         public long TotalIterations { get; set; }
-
-
     }
 
 }

@@ -61,6 +61,24 @@ namespace ChiaApp.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Block rewards.
+        /// </summary>
+        internal static string BlockRewards {
+            get {
+                return ResourceManager.GetString("BlockRewards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Days.
+        /// </summary>
+        internal static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Difficulty.
         /// </summary>
         internal static string Difficulty {
@@ -84,6 +102,51 @@ namespace ChiaApp.Resources {
         internal static string EstimatedNetworkSpace {
             get {
                 return ResourceManager.GetString("EstimatedNetworkSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Estimated time to win.
+        /// </summary>
+        internal static string EstimatedTimeWin {
+            get {
+                return ResourceManager.GetString("EstimatedTimeWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total chia farmed.
+        /// </summary>
+        internal static string FarmedAmount {
+            get {
+                return ResourceManager.GetString("FarmedAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Farming.
+        /// </summary>
+        internal static string Farming {
+            get {
+                return ResourceManager.GetString("Farming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Farming status.
+        /// </summary>
+        internal static string FarmingStatus {
+            get {
+                return ResourceManager.GetString("FarmingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à User transation fees.
+        /// </summary>
+        internal static string FeeAmount {
+            get {
+                return ResourceManager.GetString("FeeAmount", resourceCulture);
             }
         }
         
@@ -124,6 +187,24 @@ namespace ChiaApp.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Last height farmed.
+        /// </summary>
+        internal static string LastHeightFarmed {
+            get {
+                return ResourceManager.GetString("LastHeightFarmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Not running.
+        /// </summary>
+        internal static string NotRunning {
+            get {
+                return ResourceManager.GetString("NotRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Not synced.
         /// </summary>
         internal static string NotSynced {
@@ -156,6 +237,24 @@ namespace ChiaApp.Resources {
         internal static string PendingBalance {
             get {
                 return ResourceManager.GetString("PendingBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Plot count.
+        /// </summary>
+        internal static string PlotCount {
+            get {
+                return ResourceManager.GetString("PlotCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pool rewards.
+        /// </summary>
+        internal static string PoolRewards {
+            get {
+                return ResourceManager.GetString("PoolRewards", resourceCulture);
             }
         }
         
@@ -201,6 +300,15 @@ namespace ChiaApp.Resources {
         internal static string TotalIterations {
             get {
                 return ResourceManager.GetString("TotalIterations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total size of plots.
+        /// </summary>
+        internal static string TotalSizePlot {
+            get {
+                return ResourceManager.GetString("TotalSizePlot", resourceCulture);
             }
         }
         

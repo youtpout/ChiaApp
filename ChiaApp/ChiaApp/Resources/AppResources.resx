@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BlockRewards" xml:space="preserve">
+    <value>Block rewards</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
   <data name="Difficulty" xml:space="preserve">
     <value>Difficulty</value>
   </data>
@@ -125,6 +131,21 @@
   </data>
   <data name="EstimatedNetworkSpace" xml:space="preserve">
     <value>Estimated network space</value>
+  </data>
+  <data name="EstimatedTimeWin" xml:space="preserve">
+    <value>Estimated time to win</value>
+  </data>
+  <data name="FarmedAmount" xml:space="preserve">
+    <value>Total chia farmed</value>
+  </data>
+  <data name="Farming" xml:space="preserve">
+    <value>Farming</value>
+  </data>
+  <data name="FarmingStatus" xml:space="preserve">
+    <value>Farming status</value>
+  </data>
+  <data name="FeeAmount" xml:space="preserve">
+    <value>User transation fees</value>
   </data>
   <data name="Fingerprint" xml:space="preserve">
     <value>Fingerprint</value>
@@ -138,6 +159,12 @@
   <data name="Height" xml:space="preserve">
     <value>Height</value>
   </data>
+  <data name="LastHeightFarmed" xml:space="preserve">
+    <value>Last height farmed</value>
+  </data>
+  <data name="NotRunning" xml:space="preserve">
+    <value>Not running</value>
+  </data>
   <data name="NotSynced" xml:space="preserve">
     <value>Not synced</value>
   </data>
@@ -149,6 +176,12 @@
   </data>
   <data name="PendingBalance" xml:space="preserve">
     <value>Pending balance</value>
+  </data>
+  <data name="PlotCount" xml:space="preserve">
+    <value>Plot count</value>
+  </data>
+  <data name="PoolRewards" xml:space="preserve">
+    <value>Pool rewards</value>
   </data>
   <data name="SpendableBalance" xml:space="preserve">
     <value>Spendable balance</value>
@@ -164,6 +197,9 @@
   </data>
   <data name="TotalIterations" xml:space="preserve">
     <value>Total iterations</value>
+  </data>
+  <data name="TotalSizePlot" xml:space="preserve">
+    <value>Total size of plots</value>
   </data>
   <data name="WalletStatus" xml:space="preserve">
     <value>Wallet status</value>

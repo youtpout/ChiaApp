@@ -9,107 +9,176 @@
         <vm:HomeViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <StackLayout HeightRequest="10">
-                <ProgressBar ProgressColor="{StaticResource Primary}" Progress="{Binding Progress}" IsVisible="{Binding Loading}" />
+        <ScrollView>
+            <StackLayout Padding="10">
+                <StackLayout HeightRequest="10">
+                    <ProgressBar ProgressColor="{StaticResource Primary}" Progress="{Binding Progress}" IsVisible="{Binding Loading}" />
+                </StackLayout>
+                <Label Text="{Binding Error}" IsVisible="{Binding ShowError}" TextColor="{StaticResource Danger}"></Label>
+                <Frame BindingContext="{Binding FullNodeStatus}"  CornerRadius="10" HasShadow="True"    Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.FullNodeStatus}" FontSize="Large" />
+                        <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
+                            <StackLayout  IsVisible="{Binding Synced}">
+                                <Label Text="{x:Static resx:AppResources.FullNodeSynced}" TextColor="{StaticResource Connected}"/>
+                            </StackLayout>
+                            <StackLayout  IsVisible="{Binding Synced, Converter={StaticResource InverterConverter}}">
+                                <StackLayout Orientation="Horizontal" IsVisible="{Binding Syncing}">
+                                    <Label Text="{x:Static resx:AppResources.Syncing}" TextColor="{StaticResource Syncing}"/>
+                                    <Label Text="{Binding SyncProgressHeight}" TextColor="{StaticResource Syncing}"/>
+                                    <Label Text="/" TextColor="{StaticResource Syncing}"/>
+                                    <Label Text="{Binding SyncTipHeight}" TextColor="{StaticResource Syncing}"/>
+                                </StackLayout>
+                                <StackLayout IsVisible="{Binding Syncing, Converter={StaticResource InverterConverter}}">
+                                    <Label Text="{x:Static resx:AppResources.NotSynced}" TextColor="{StaticResource NotConnected}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Grid.Row="2" Grid.Column="0" Text="{x:Static resx:AppResources.PeakHeight}"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding PeakHeight}"/>
+
+                        <Label  Grid.Row="3" Grid.Column="0" Text="{x:Static resx:AppResources.PeakTime}"/>
+                        <Label  Grid.Row="3" Grid.Column="1" Text="{Binding PeakTimeFormat}"/>
+
+                        <Label Grid.Row="4" Grid.Column="0" Text="{x:Static resx:AppResources.EstimatedNetworkSpace}"/>
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding EstimatedNetworkSpaceFormat}"/>
+
+
+                        <Label Grid.Row="5" Grid.Column="0" Text="{x:Static resx:AppResources.Difficulty}"/>
+                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Difficulty}"/>
+
+                        <Label Grid.Row="6" Grid.Column="0" Text="{x:Static resx:AppResources.TotalIterations}"/>
+                        <Label Grid.Row="6" Grid.Column="1" Text="{Binding TotalIterationFormat}"/>
+                    </Grid>
+                </Frame>
+                <Frame BindingContext="{Binding WalletInfo}"  CornerRadius="10" HasShadow="True"    Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.WalletStatus}" FontSize="Large" />
+                        <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
+                            <StackLayout  IsVisible="{Binding Synced}">
+                                <Label Text="{x:Static resx:AppResources.Synced}" TextColor="{StaticResource Connected}"/>
+                            </StackLayout>
+                            <StackLayout  IsVisible="{Binding Synced, Converter={StaticResource InverterConverter}}">
+                                <StackLayout IsVisible="{Binding Syncing}">
+                                    <Label Text="{x:Static resx:AppResources.Syncing}" TextColor="{StaticResource Syncing}"/>
+                                </StackLayout>
+                                <StackLayout IsVisible="{Binding Syncing, Converter={StaticResource InverterConverter}}">
+                                    <Label Text="{x:Static resx:AppResources.NotSynced}" TextColor="{StaticResource NotConnected}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Label Grid.Row="2" Grid.Column="0"  Text="{x:Static resx:AppResources.Fingerprint}"/>
+                        <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Fingerprint}"/>
+
+                        <Label Grid.Row="3" Grid.Column="0"  Text="{x:Static resx:AppResources.Height}"/>
+                        <Label Grid.Row="3" Grid.Column="1"  Text="{Binding Height}"/>
+
+                        <Label Grid.Row="4" Grid.Column="0"  Text="{x:Static resx:AppResources.TotalBalance}"/>
+                        <Label Grid.Row="4" Grid.Column="1"  Text="{Binding TotalBalanceFormat}"/>
+
+                        <Label Grid.Row="5" Grid.Column="0"  Text="{x:Static resx:AppResources.PendingBalance}"/>
+                        <Label Grid.Row="5" Grid.Column="1"  Text="{Binding PendingBalanceFormat}"/>
+
+                        <Label Grid.Row="6" Grid.Column="0"  Text="{x:Static resx:AppResources.SpendableBalance}"/>
+                        <Label Grid.Row="6" Grid.Column="1"  Text="{Binding SpendableBalanceFormat}"/>
+                    </Grid>
+                </Frame>
+
+                <Frame BindingContext="{Binding FarmingInfo}"  CornerRadius="10" HasShadow="True"    Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.FarmingStatus}" FontSize="Large" />
+                        <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
+                            <StackLayout  IsVisible="{Binding Syncing}">
+                                <Label Text="{x:Static resx:AppResources.Syncing}" TextColor="{StaticResource Syncing}"/>
+                            </StackLayout>
+                            <StackLayout  IsVisible="{Binding Syncing, Converter={StaticResource InverterConverter}}">
+                                <StackLayout IsVisible="{Binding Synced , Converter={StaticResource InverterConverter}}">
+                                    <Label Text="{x:Static resx:AppResources.NotSynced}" TextColor="{StaticResource NotConnected}"/>
+                                </StackLayout>
+                                <StackLayout IsVisible="{Binding Synced}">
+                                    <StackLayout IsVisible="{Binding Running}">
+                                        <Label Text="{x:Static resx:AppResources.Farming}" TextColor="{StaticResource Connected}"/>
+                                    </StackLayout>
+                                    <StackLayout IsVisible="{Binding Running, Converter={StaticResource InverterConverter}}">
+                                        <Label Text="{x:Static resx:AppResources.NotRunning}" TextColor="{StaticResource Syncing}"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Label Grid.Row="2" Grid.Column="0"  Text="{x:Static resx:AppResources.FarmedAmount}"/>
+                        <Label Grid.Row="2" Grid.Column="1"  Text="{Binding FarmedAmountFormat}"/>
+
+                        <Label Grid.Row="3" Grid.Column="0"  Text="{x:Static resx:AppResources.BlockRewards}"/>
+                        <Label Grid.Row="3" Grid.Column="1"  Text="{Binding RewardAmountFormat}"/>
+
+                        <Label Grid.Row="4" Grid.Column="0"  Text="{x:Static resx:AppResources.PoolRewards}"/>
+                        <Label Grid.Row="4" Grid.Column="1"  Text="{Binding PoolRewardAmountFormat}"/>
+
+                        <Label Grid.Row="5" Grid.Column="0"  Text="{x:Static resx:AppResources.FeeAmount}"/>
+                        <Label Grid.Row="5" Grid.Column="1"  Text="{Binding FeeAmountFormat}"/>
+
+                        <Label Grid.Row="6" Grid.Column="0"  Text="{x:Static resx:AppResources.LastHeightFarmed}"/>
+                        <Label Grid.Row="6" Grid.Column="1"  Text="{Binding LastHeightFarmed}"/>
+
+                        <Label Grid.Row="7" Grid.Column="0"  Text="{x:Static resx:AppResources.PlotCount}"/>
+                        <Label Grid.Row="7" Grid.Column="1"  Text="{Binding PlotCount}"/>
+
+                        <Label Grid.Row="8" Grid.Column="0"  Text="{x:Static resx:AppResources.TotalSizePlot}"/>
+                        <Label Grid.Row="8" Grid.Column="1"  Text="{Binding TotalPlotSizeFormat}"/>
+
+                        <Label Grid.Row="9" Grid.Column="0"  Text="{x:Static resx:AppResources.EstimatedTimeWin}"/>
+                        <StackLayout Grid.Row="9" Grid.Column="1" Orientation="Horizontal">
+                            <Label   Text="{Binding ExpectedTimeToWinFormat}"/>
+                            <Label   Text="{x:Static resx:AppResources.Days}"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
             </StackLayout>
-            <Label Text="{Binding Error}" IsVisible="{Binding ShowError}" TextColor="{StaticResource Danger}"></Label>
-            <Frame BindingContext="{Binding FullNodeStatus}"  CornerRadius="10" HasShadow="True"    Padding="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.FullNodeStatus}" FontSize="Large" />
-                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
-                        <StackLayout  IsVisible="{Binding Synced}">
-                            <Label Text="{x:Static resx:AppResources.FullNodeSynced}" TextColor="{StaticResource Connected}"/>
-                        </StackLayout>
-                        <StackLayout  IsVisible="{Binding Synced, Converter={StaticResource InverterConverter}}">
-                            <StackLayout Orientation="Horizontal" IsVisible="{Binding Syncing}">
-                                <Label Text="{x:Static resx:AppResources.Syncing}" TextColor="{StaticResource Syncing}"/>
-                                <Label Text="{Binding SyncProgressHeight}" TextColor="{StaticResource Syncing}"/>
-                                <Label Text="/" TextColor="{StaticResource Syncing}"/>
-                                <Label Text="{Binding SyncTipHeight}" TextColor="{StaticResource Syncing}"/>
-                            </StackLayout>
-                            <StackLayout IsVisible="{Binding Syncing, Converter={StaticResource InverterConverter}}">
-                                <Label Text="{x:Static resx:AppResources.NotSynced}" TextColor="{StaticResource NotConnected}"/>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-                    <Label Grid.Row="2" Grid.Column="0" Text="{x:Static resx:AppResources.PeakHeight}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding PeakHeight}"/>
-
-                    <Label  Grid.Row="3" Grid.Column="0" Text="{x:Static resx:AppResources.PeakTime}"/>
-                    <Label  Grid.Row="3" Grid.Column="1" Text="{Binding PeakTimeFormat}"/>
-
-                    <Label Grid.Row="4" Grid.Column="0" Text="{x:Static resx:AppResources.EstimatedNetworkSpace}"/>
-                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding EstimatedNetworkSpaceFormat}"/>
-
-
-                    <Label Grid.Row="5" Grid.Column="0" Text="{x:Static resx:AppResources.Difficulty}"/>
-                    <Label Grid.Row="5" Grid.Column="1" Text="{Binding Difficulty}"/>
-
-                    <Label Grid.Row="6" Grid.Column="0" Text="{x:Static resx:AppResources.TotalIterations}"/>
-                    <Label Grid.Row="6" Grid.Column="1" Text="{Binding TotalIterationFormat}"/>
-                </Grid>
-            </Frame>
-            <Frame BindingContext="{Binding WalletInfo}"  CornerRadius="10" HasShadow="True"    Padding="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Label  Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.WalletStatus}" FontSize="Large" />
-                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
-                        <StackLayout  IsVisible="{Binding Synced}">
-                            <Label Text="{x:Static resx:AppResources.Synced}" TextColor="{StaticResource Connected}"/>
-                        </StackLayout>
-                        <StackLayout  IsVisible="{Binding Synced, Converter={StaticResource InverterConverter}}">
-                            <StackLayout IsVisible="{Binding Syncing}">
-                                <Label Text="{x:Static resx:AppResources.Syncing}" TextColor="{StaticResource Syncing}"/>
-                            </StackLayout>
-                            <StackLayout IsVisible="{Binding Syncing, Converter={StaticResource InverterConverter}}">
-                                <Label Text="{x:Static resx:AppResources.NotSynced}" TextColor="{StaticResource NotConnected}"/>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <Label Grid.Row="2" Grid.Column="0"  Text="{x:Static resx:AppResources.Fingerprint}"/>
-                    <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Fingerprint}"/>
-
-                    <Label Grid.Row="3" Grid.Column="0"  Text="{x:Static resx:AppResources.Height}"/>
-                    <Label Grid.Row="3" Grid.Column="1"  Text="{Binding Height}"/>
-
-                    <Label Grid.Row="4" Grid.Column="0"  Text="{x:Static resx:AppResources.TotalBalance}"/>
-                    <Label Grid.Row="4" Grid.Column="1"  Text="{Binding TotalBalanceFormat}"/>
-
-                    <Label Grid.Row="5" Grid.Column="0"  Text="{x:Static resx:AppResources.PendingBalance}"/>
-                    <Label Grid.Row="5" Grid.Column="1"  Text="{Binding PendingBalanceFormat}"/>
-
-                    <Label Grid.Row="6" Grid.Column="0"  Text="{x:Static resx:AppResources.SpendableBalance}"/>
-                    <Label Grid.Row="6" Grid.Column="1"  Text="{Binding SpendableBalanceFormat}"/>
-                </Grid>
-            </Frame>
-
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
